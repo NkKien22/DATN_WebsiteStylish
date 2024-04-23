@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { StrictMode, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {AuthorServices} from "./app/store/features"
+import {Dashboard,UserHome} from "./components";
+
 import './App.css';
 
-function App() {
+const App  = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
+  const web_ru_path_Url = useSelector((state) => state.userReducer.rule);
+  useEffect(() => {
+    if (!user) {
+      dispatch(AuthorServices.initUserFromLocal())
+    }
+  },[dispatch,useDispatch,user,web_ru_path_Url]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    <StrictMode>
+      { web_ru_path_Url !== 0 ? 
+        <UserHome/>: <>
+        <Dashboard/>
+      </>
+    }
+    </StrictMode>
+    );
+  };
+  
+  
+  export default App;
+  
