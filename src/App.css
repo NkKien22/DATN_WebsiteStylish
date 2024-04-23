@@ -1,3 +1,7 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 .App {
   text-align: center;
 }
@@ -26,6 +30,14 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.bg-nav{
+  background-color: #e3e9f5;
+}
+
+.bg-white{
+  background: #ffffff;
 }
 
 @keyframes App-logo-spin {
